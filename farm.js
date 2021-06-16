@@ -17,10 +17,19 @@ const getProfitForCrop = (input) => {
     const profitForCrop = getRevenueForCrop(input) - getCostsForCrop(input);
     console.log(profitForCrop);
     return profitForCrop;    
-}
+};
+
+const getTotalProfit = (input) => {
+    const profitPerCrop = input.map((crop) => getProfitForCrop(crop));
+    console.log(profitPerCrop);
+    const totalProfit = profitPerCrop.reduce((acc, cur) => acc + cur);
+    console.log(totalProfit);
+    return totalProfit;
+};
 
 module.exports = {
     getCostsForCrop,
     getRevenueForCrop,
     getProfitForCrop,
+    getTotalProfit,
 };

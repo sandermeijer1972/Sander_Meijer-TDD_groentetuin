@@ -2,6 +2,7 @@ const {
     getCostsForCrop,
     getRevenueForCrop,
     getProfitForCrop,
+    getTotalProfit,
 } = require("./farm.js");
 
 describe("testing getCostsForCrop", () => {
@@ -40,5 +41,31 @@ describe("testing getProfitForCrop", () => {
     };
     test("get Profit for crop", () => {
         expect(getProfitForCrop(input)).toBe(110);
+    });
+});
+
+describe("testing getTotalProfit", () => {
+    const haricot = {
+        name: "haricot",
+        salePrice: 3,
+        yield: 4,
+    };
+    const tomato = {
+        name: "tomato",
+        salePrice: 2,
+        yield: 5,
+    };
+    const rhubarb = {
+        name: "rhubarb",
+        salePrice: 2.5,
+        yield: 5,
+    };
+    const input = [
+        {crop: haricot, numCrops: 15},
+        {crop: tomato, numCrops: 10},
+        {crop: rhubarb, numCrops: 12}
+    ];
+    test("get total profit for multiple crops", () => {
+        expect(getTotalProfit(input)).toBe(393);
     });
 });
