@@ -28,35 +28,69 @@ const getTotalProfit = (input) => {
 };
 
 const getYieldForPlant = (input, factor) => {
+    if (!factor) {
+        return input.yield;
+    };   
+    let sun;
+    let wind;
+    let rain;
+    let soil;    
     switch(factor.sun) {
         case "low":
-            const sun = (100 + input.factors.sun.low)/100;
+            sun = (100 + input.factors.sun.low)/100;
             break;
         case "medium":
-            const sun = (100 + input.factors.sun.medium)/100;
+            sun = (100 + input.factors.sun.medium)/100;
             break;
         case "high":
-            const sun = (100 + input.factors.sun.high)/100;
+            sun = (100 + input.factors.sun.high)/100;
             break;
         default:
-            const sun = 1;
-    };
+            sun = 1;
+    };    
     switch(factor.wind) {
         case "low":
-            const wind = (100 + input.factors.wind.low)/100;
+            wind = (100 + input.factors.wind.low)/100;
             break;
         case "medium":
-            const wind = (100 + input.factors.wind.medium)/100;
+            wind = (100 + input.factors.wind.medium)/100;
             break;
         case "high":
-            const wind = (100 + input.factors.wind.high)/100;
+            wind = (100 + input.factors.wind.high)/100;
             break;
         default:
-            const wind = 1;
+            wind = 1;
     };
-    const yieldPerPlant = input.yield * sun * wind;
+    switch(factor.rain) {
+        case "low":
+            rain = (100 + input.factors.rain.low)/100;
+            break;
+        case "medium":
+            rain = (100 + input.factors.rain.medium)/100;
+            break;
+        case "high":
+            rain = (100 + input.factors.rain.high)/100;
+            break;
+        default:
+            rain = 1;
+    };
+    switch(factor.soil) {
+        case "peat":
+            soil = (100 + input.factors.soil.peat)/100;
+            break;
+        case "sand":
+            soil = (100 + input.factors.soil.sand)/100;
+            break;
+        case "clay":
+            soil = (100 + input.factors.soil.clay)/100;
+            break;
+        default:
+            soil = 1;
+    };
+    console.log("sun, wind, rain and soil: ", sun, wind, rain, soil);
+    const yieldPerPlant = input.yield * sun * wind * rain * soil;
     console.log("yield per plant: ", yieldPerPlant);
-    return yieldPerPlant;
+    return parseFloat(yieldPerPlant.toFixed(2));
 };
 
 module.exports = {
