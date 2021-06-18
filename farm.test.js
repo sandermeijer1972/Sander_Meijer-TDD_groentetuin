@@ -4,6 +4,7 @@ const {
     getProfitForCrop,
     getTotalProfit,
     getYieldForPlant,
+    getYieldForCrop,
 } = require("./farm.js");
 
 describe("testing getCostsForCrop", () => {
@@ -151,5 +152,82 @@ describe("testing getYieldForPlant", () => {
             soil: "clay",
         };
         expect(getYieldForPlant(pumpkin, environmentFactors)).toBe(2.38);
+    });
+});
+
+describe("testing getYieldForCrop", () => {
+
+    test("Get yield for crop, simple", () => {
+        const corn = {
+            name: "corn",
+            yield: 3,
+        };
+        const input = {
+            crop: corn,
+            numCrops: 10,
+        };
+        expect(getYieldForCrop(input)).toBe(30);
+    });
+
+    test("get yield for crop with factor sun low and factor rain high", () => {
+        const lettuce = {
+            name: "lettuce",
+            yield: 2,
+            factors: {
+                sun: {
+                    low: -40,
+                    medium: 10,
+                    high: 50,
+                },
+                rain: {
+                    low: 30,
+                    medium: 0,
+                    high: -40,
+                },
+            },
+        };
+        const environmentFactors = {
+            sun: "low",
+            rain: "high",
+        };
+        const crops = {
+            crop: lettuce,
+            numCrops: 20,
+        };
+        expect(getYieldForCrop(crops, environmentFactors)).toBe(14.40);
+    });
+
+    test("test yield for crop with factor wind low, factor rain low and factor soil sand", () => {
+        const corn = {
+            name: "corn",
+            yield: 3,
+            factors: {
+                wind: {
+                    low: 50,
+                    medium: 10,
+                    high: -20,
+                },
+                rain: {
+                    low: 40,
+                    medium: 0,
+                    high: -40,
+                },
+                soil: {
+                    peat: 40,
+                    sand: -20,
+                    clay: -10,
+                },
+            },
+        };
+        const environmentFactors = {
+            wind: "low",
+            rain: "low",
+            soil: "sand",
+        };
+        const crops = {
+            crop: corn,
+            numCrops: 150,
+        };
+        expect(getYieldForCrop(crops, environmentFactors)).toBe(756);
     });
 });

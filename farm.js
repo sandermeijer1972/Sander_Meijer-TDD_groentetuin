@@ -93,10 +93,17 @@ const getYieldForPlant = (input, factor) => {
     return parseFloat(yieldPerPlant.toFixed(2));
 };
 
+const getYieldForCrop = (input, factor) => {
+    const yieldPerPlant = getYieldForPlant(input.crop, factor);
+    const yieldPerCrop = yieldPerPlant * input.numCrops;
+    return parseFloat(yieldPerCrop.toFixed(2));
+};
+
 module.exports = {
     getCostsForCrop,
     getRevenueForCrop,
     getProfitForCrop,
     getTotalProfit,
     getYieldForPlant,
+    getYieldForCrop,
 };
