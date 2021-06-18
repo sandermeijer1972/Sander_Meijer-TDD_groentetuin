@@ -3,6 +3,7 @@ const {
     getRevenueForCrop,
     getProfitForCrop,
     getTotalProfit,
+    getYieldForPlant,
 } = require("./farm.js");
 
 describe("testing getCostsForCrop", () => {
@@ -67,5 +68,57 @@ describe("testing getTotalProfit", () => {
     ];
     test("get total profit for multiple crops", () => {
         expect(getTotalProfit(input)).toBe(393);
+    });
+});
+
+describe("testing getYieldForPlant", () => {
+    const corn = {
+        name: "corn",
+        yield: 30,
+    };
+    test("Get yield for plant with no environment factors", () => {
+        expect(getYieldForPlant(corn)).toBe(30);
+    });
+
+    const cucumber = {
+        name: "cucumber",
+        yield: 15,
+        factors: {
+            sun: {
+                low: -40,
+                medium: 0,
+                high: 50,
+            },
+        },
+    };
+    const environmentFactors = {
+        sun: "high",
+    };
+    test("get yield for plant with factor sun high", () => {
+        expect(getYieldForPlant(cucumber, environmentFactors)).toBe(22.5);
+    });
+
+    const avocado = {
+        name: "avocado",
+        yield: 3,
+        factors: {
+            sun: {
+                low: -20,
+                medium: 0,
+                high: 50,
+            },
+            wind: {
+                low: 0,
+                medium: -30,
+                high: -60,
+            },
+        },
+    };
+    const environmentFactors = {
+        sun: "low",
+        wind: "medium",
+    };
+    test("get yield for plant with factor sun low and factor wind medium", () => {
+        expect(getYieldForPlant(avocado, environmentFactors)).toBe(1.68);
     });
 });
