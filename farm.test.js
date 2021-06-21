@@ -51,6 +51,18 @@ describe("testing getProfitForCrop", () => {
         name: "carrot",
         salePrice: 0.80,
         yield: 4,
+        factors: {
+            rain: {
+                low: 40,
+                medium: 10,
+                high: -30,
+            },
+            soil: {
+                peat: 40,
+                sand: -30,
+                clay: -10,
+            },
+        },
     };
     const crops = {
         crop: carrot,
@@ -58,6 +70,14 @@ describe("testing getProfitForCrop", () => {
     };
     test("get Profit for crop", () => {
         expect(getProfitForCrop(crops)).toBe(110);
+    });
+
+    test("get Profit for Crop with rainfactor high on sandy soil", () => {
+        const environmentFactors = {
+            rain: "high",
+            soil: "sand",
+        };
+        expect(getProfitForCrop(crops, environmentFactors)).toBe(28.4);
     });
 });
 

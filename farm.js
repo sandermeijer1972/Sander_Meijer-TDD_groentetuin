@@ -13,10 +13,10 @@ const getRevenueForCrop = (input, factor) => {
     return revenueForCrop;
 };
 
-const getProfitForCrop = (input) => {
-    const profitForCrop = getRevenueForCrop(input) - getCostsForCrop(input);
+const getProfitForCrop = (input, factor) => {
+    const profitForCrop = getRevenueForCrop(input, factor) - getCostsForCrop(input);
     console.log("winst voor een crop: ", profitForCrop);
-    return profitForCrop;    
+    return parseFloat(profitForCrop.toFixed(2));    
 };
 
 const getTotalProfit = (input) => {
