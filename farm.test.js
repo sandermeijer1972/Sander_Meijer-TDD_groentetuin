@@ -310,8 +310,8 @@ describe("testing getTotalYield", () => {
             yield: 4,
             factors: {
                 sun: {
-                    low: -10,
-                    medium: 20,
+                    low: -20,
+                    medium: 10,
                     high: 40,
                 },
             },
