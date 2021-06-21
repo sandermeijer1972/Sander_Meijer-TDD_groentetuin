@@ -5,6 +5,7 @@ const {
     getTotalProfit,
     getYieldForPlant,
     getYieldForCrop,
+    getTotalYield,
 } = require("./farm.js");
 
 describe("testing getCostsForCrop", () => {
@@ -229,5 +230,116 @@ describe("testing getYieldForCrop", () => {
             numCrops: 150,
         };
         expect(getYieldForCrop(crops, environmentFactors)).toBe(756);
+    });
+});
+
+describe("testing getTotalYield", () => {
+    test("Calculate total yield with multiple crops", () => {
+        const corn = {
+            name: "corn",
+            yield: 3,
+        };
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 4,
+        };
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+        ];
+        expect(getTotalYield({ crops })).toBe(23);
+    });
+
+    test("Calculate total yield with 0 amount", () => {
+        const corn = {
+            name: "corn",
+            yield: 3,
+        };
+        const crops = [{ crop: corn, numCrops: 0 }];
+        expect(getTotalYield({ crops })).toBe(0);
+    });
+
+    test("Calculate total yield with multiple crops and sunfactor high", () => {
+        const avocado = {
+            name: "avocado",
+            yield: 3,
+            factors: {
+                sun: {
+                    low: -20,
+                    medium: 0,
+                    high: 50,
+                },                
+            },
+        };
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 4,
+            factors: {
+                sun: {
+                    low: -10,
+                    medium: 20,
+                    high: 40,
+                },
+            },
+        };
+        const environmentFactors = {
+            sun: "high",
+        }
+        const crops = [
+            {crop: avocado, numCrops: 5},
+            {crop: pumpkin, numCrops: 3},
+        ];
+        expect(getTotalYield({ crops }, environmentFactors)).toBe(39.3);
+    });
+
+    test("Calculate total yield with multiple crops and multiple environmentfactors", () => {
+        const lettuce = {
+            name: "lettuce",
+            yield: 2,
+            factors: {
+                sun: {
+                    low: -40,
+                    medium: 10,
+                    high: 50,
+                },
+                rain: {
+                    low: 30,
+                    medium: 0,
+                    high: -40,
+                },
+            },
+        };
+        const corn = {
+            name: "corn",
+            yield: 3,
+            factors: {
+                wind: {
+                    low: 50,
+                    medium: 10,
+                    high: -20,
+                },
+                rain: {
+                    low: 40,
+                    medium: 0,
+                    high: -40,
+                },
+                soil: {
+                    peat: 40,
+                    sand: -20,
+                    clay: -10,
+                },
+            },
+        };
+        const environmentFactors = {
+            sun: "high",
+            wind: "low",
+            rain: "low",
+            soil: "peat",
+        };
+        const crops = [
+            {crop: lettuce, numCrops: 25},
+            {crop: corn, numCrops: 50},
+        ];
+        expect(getTotalYield({ crops }, environmentFactors)).toBe(538.5);
     });
 });
