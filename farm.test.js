@@ -22,6 +22,13 @@ describe("testing getRevenueForCrop", () => {
         name: "strawberry",
         salePrice: 4,
         yield: 3,
+        factors: {
+            sun: {
+                low: -20,
+                medium: 0,
+                high: 30,
+            },
+        },
     };
     const crops = {
         crop: strawberry,
@@ -29,6 +36,13 @@ describe("testing getRevenueForCrop", () => {
     };
     test("get Revenue for crop", () => {
         expect(getRevenueForCrop(crops)).toBe(240);
+    });
+
+    test("get Revenue for crop with sunfactor high", () => {
+        const environmentFactors = {
+            sun: "high",
+        };
+        expect(getRevenueForCrop(crops, environmentFactors)).toBe(312);
     });
 });
 
@@ -301,7 +315,7 @@ describe("testing getTotalYield", () => {
                     low: -40,
                     medium: 10,
                     high: 50,
-                },
+                },                
                 rain: {
                     low: 30,
                     medium: 0,
