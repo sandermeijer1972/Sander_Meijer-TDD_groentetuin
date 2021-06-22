@@ -47,7 +47,9 @@ const getYieldForPlant = (input, factor) => {
                 break;
             case "high":
                 sun = (100 + input.factors.sun.high)/100;
-                break;            
+                break;  
+            default:
+                sun = 1;          
         };
     };    
     if (!input.factors.wind) {
@@ -62,7 +64,9 @@ const getYieldForPlant = (input, factor) => {
                 break;
             case "high":
                 wind = (100 + input.factors.wind.high)/100;
-                break;            
+                break;  
+            default:
+                wind = 1;          
         };
     };  
     if (!input.factors.rain) {
@@ -77,7 +81,9 @@ const getYieldForPlant = (input, factor) => {
                 break;
             case "high":
                 rain = (100 + input.factors.rain.high)/100;
-                break;            
+                break;
+            default:
+                rain = 1;          
         };
     };  
     if (!input.factors.soil) {
@@ -92,7 +98,9 @@ const getYieldForPlant = (input, factor) => {
                 break;
             case "clay":
                 soil = (100 + input.factors.soil.clay)/100;
-                break;            
+                break;
+            default:
+                soil = 1;              
         };
     };    
     console.log("sun, wind, rain and soil: ", sun, wind, rain, soil);
