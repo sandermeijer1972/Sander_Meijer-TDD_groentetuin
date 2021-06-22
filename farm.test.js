@@ -94,6 +94,61 @@ describe("testing getTotalProfit", () => {
 
 //STEP 13 : GET TOTAL PROFIT, WITH ENVIRONMENTFACTOR
 
+    test("get total profit for multiple crops with sunfactor low", () => {
+        const crops = [
+            {crop: cauliflower, numCrops: 20},
+            {crop: endive, numCrops: 20},
+            {crop: beetroot, numCrops: 15},
+        ];
+        const environmentFactors = {
+            sun: "low",
+        };
+        expect(getTotalProfit(crops, environmentFactors)).toBe(192.8);
+    });
+
+    test("get total profit for multiple crops with rainfactor high on clay-soil", () => {
+        const crops = [
+            {crop: radish, numCrops: 25},
+            {crop: spinach, numCrops: 20},
+            {crop: potato, numCrops: 20},
+            {crop: rhubarb, numCrops: 10},
+            {crop: carrot, numCrops: 30},
+        ];
+        const environmentFactors = {
+            rain: "high",
+            soil: "clay",
+        };
+        expect(getTotalProfit(crops, environmentFactors)).toBe(377.44);
+    });
+
+    test("get total profit for all different crops and all factors", () => {
+        const crops = [
+            {crop: avocado, numCrops: 10},
+            {crop: beetroot, numCrops: 15},
+            {crop: carrot, numCrops: 50},
+            {crop: cauliflower, numCrops: 20},
+            {crop: cucumber, numCrops: 10},
+            {crop: endive, numCrops: 20},
+            {crop: grain, numCrops: 150},
+            {crop: haricot, numCrops: 10},
+            {crop: lettuce, numCrops: 20},
+            {crop: potato, numCrops: 30},
+            {crop: pumpkin, numCrops: 40},
+            {crop: radish, numCrops: 15},
+            {crop: rhubarb, numCrops: 30},
+            {crop: spinach, numCrops: 20},
+            {crop: strawberry, numCrops: 25},
+            {crop: tomato, numCrops: 10},
+        ];
+        const environmentFactors = {
+            sun: "high",
+            wind: "medium",
+            rain: "low",
+            soil: "peat",
+        };
+        expect(getTotalProfit(crops, environmentFactors)).toBe(3639.29)
+    })
+
 });
 
 

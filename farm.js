@@ -19,12 +19,12 @@ const getProfitForCrop = (input, factor) => {
     return parseFloat(profitForCrop.toFixed(2));    
 };
 
-const getTotalProfit = (input) => {
-    const profitPerCrop = input.map((crop) => getProfitForCrop(crop));
+const getTotalProfit = (input, factor) => {
+    const profitPerCrop = input.map((crop) => getProfitForCrop(crop, factor));
     console.log("winst per crop: ", profitPerCrop);
     const totalProfit = profitPerCrop.reduce((acc, cur) => acc + cur);
     console.log("totale winst van alle crops: ", totalProfit);
-    return totalProfit;
+    return parseFloat(totalProfit.toFixed(2));
 };
 
 const getYieldForPlant = (input, factor) => {
@@ -115,11 +115,7 @@ const getYieldForCrop = (input, factor) => {
     return parseFloat(yieldPerCrop.toFixed(2));
 };
 
-const getTotalYield = (input, factor) => {
-    console.log(typeof(input));
-    console.log(Object.entries(input));
-    console.log(Object.keys(input));
-    console.log(Object.values(input)[0]);   
+const getTotalYield = (input, factor) => {     
     const yieldPerCrop = input.crops.map((crop) => getYieldForCrop(crop, factor));
     const totalYield = yieldPerCrop.reduce((acc, cur) => acc + cur);
     return parseFloat(totalYield.toFixed(2));  

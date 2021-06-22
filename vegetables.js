@@ -118,6 +118,7 @@ const endive = {
 
 const grain = {
     name: "grain",
+    salePrice: 0.20,
     yield: 3,
     factors: {
         wind: {
@@ -263,7 +264,7 @@ const rhubarb = {
             medium: 0,
             high: -30,
         },
-        wind: {
+        rain: {
             low: -30,
             medium: 10,
             high: 40,
@@ -275,7 +276,7 @@ const spinach = {
     name: "spinach",
     salePrice: 1.2,
     yield: 1.5,
-    factor: {
+    factors: {
         wind: {
             low: -20,
             medium: 10,
