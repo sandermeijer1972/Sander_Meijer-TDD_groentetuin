@@ -6,3 +6,5 @@ waarbij de gebruiker zelf een groentetuin kan vullen, verdeeld over 10 velden, e
 omgevingsfactoren inschatten en aan de hand daarvan wordt de geschatte opbrengst berekend. Als je vervolgens de factoren veranderd, 
 wordt het opnieuw berekend. Het hoogste aantal planten van een teelt is 100 stuks, als je meer invult, wordt er automatisch met 
 het maximale aantal van 100 planten gerekend.
+
+https://sanders-groentetuin.netlify.app/ is de link op Netlify.
