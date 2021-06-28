@@ -62,3 +62,59 @@ const omgevingsFactoren = [
         img: "grond.png",
     },
 ];
+
+const checkCrop = function(str, num) {
+    if (!num) {
+        num = 0;
+    };
+    if (num > 100) {
+        num = 100;
+    };
+    switch(str) {
+        case "potato":
+            return {crop: potato, numCrops: num};
+            break;
+        case "strawberry":
+            return {crop: strawberry, numCrops: num};
+            break;
+        case "endive":
+            return {crop: endive, numCrops: num};
+            break;
+        case "avocado":
+            return {crop: avocado, numCrops: num};
+            break;
+        case "cauliflower":
+            return {crop: cauliflower, numCrops: num};
+            break;
+        case "cucumber":
+            return {crop: cucumber, numCrops: num};
+            break;
+        case "pumpkin":
+            return {crop: pumpkin, numCrops: num};
+            break;
+        case "rhubarb":
+            return {crop: rhubarb, numCrops: num};
+            break;
+        case "radish":
+            return {crop: radish, numCrops: num};
+            break;
+        case "beetroot":
+            return {crop: beetroot, numCrops: num};
+            break;
+        case "lettuce":
+            return {crop: lettuce, numCrops: num};
+            break;
+        case "haricot":
+            return {crop: haricot, numCrops: num};
+            break;
+        case "spinach":
+            return {crop: spinach, numCrops: num};
+            break;
+        case "tomato":
+            return {crop: tomato, numCrops: num};
+            break;
+        case "carrot":
+            return {crop: carrot, numCrops: num};
+            break;
+    };
+};

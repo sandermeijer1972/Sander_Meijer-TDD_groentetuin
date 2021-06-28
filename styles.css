@@ -142,6 +142,7 @@ button {
     font-weight: bold;
     padding: 20px;
     margin-top: 30px;
+    max-width: 82vw;
 }
 
 button:hover {

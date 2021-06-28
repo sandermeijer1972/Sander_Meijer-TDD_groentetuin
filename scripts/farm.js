@@ -6,6 +6,12 @@ const getCostsForCrop = (input) => {
     return totalCosts;
 };
 
+const getTotalCosts = (input) => {
+    const costsPerCrop = input.map((crop) => getCostsForCrop(crop));
+    const totalCosts = costsPerCrop.reduce((acc, cur) => acc + cur);
+    return totalCosts;
+};
+
 const getRevenueForCrop = (input, factor) => {
     const revenueForOnePlant = input.crop.salePrice * getYieldForPlant(input.crop, factor);
     const revenueForCrop = revenueForOnePlant * input.numCrops;
@@ -113,6 +119,12 @@ const getYieldForCrop = (input, factor) => {
     const yieldPerPlant = getYieldForPlant(input.crop, factor);
     const yieldPerCrop = yieldPerPlant * input.numCrops;
     return parseFloat(yieldPerCrop.toFixed(2));
+};
+
+const getYieldForGarden = (input, factor) => {
+    const yieldPerCrop = input.map((crop) => getYieldForCrop(crop, factor));
+    const totalYield = yieldPerCrop.reduce((acc, cur) => acc + cur);
+    return Math.round(totalYield);
 };
 
 const getTotalYield = (input, factor) => {     
